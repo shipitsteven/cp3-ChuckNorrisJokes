@@ -14,3 +14,9 @@ p {
   font-size: 1.5em;
   font-family: Arial, Helvetica, sans-serif, cursive;
 }
+
+button, input {
+  padding: 1em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin: 1em;
+}

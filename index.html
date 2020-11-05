@@ -9,7 +9,13 @@
 </head>
 <body>
 <h1>Once upon a time, someone found a book about Chuck Norris</h1>
-<p>They opened up to a random page, and it read:</p>
+<p>They opened up to <span id="page-text">a random page</span>, and it read:</p>
 <p id="joke"></p>
+<button id="random-btn" type="button">Flip to a random page</button>
+<button id='nerdy' type='button'>I feel Nerdy</button>
+<button id='nasty' type='button'>Make it Nasty</button>
+<input onfocus=this.value='' type="number" id="page-number" name="page-number" min="1"
+  placeholder="Flip to Page number...">
+<input type="submit" id="submit" value="Submit">
 </body>
 </html>

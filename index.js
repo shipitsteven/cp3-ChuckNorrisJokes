@@ -4,14 +4,31 @@
   window.addEventListener('load', init);
 
   function init() {
-    // TODO: Add listeners
-    console.log('js loaded');
     fetchJoke();
+    id('random-btn').addEventListener('click', fetchJoke);
+    id('submit').addEventListener('click', fetchJoke);
+    id('nerdy').addEventListener('click', fetchJoke);
+    id('nasty').addEventListener('click', fetchJoke);
   }
 
   function fetchJoke() {
-    const URL = 'http://api.icndb.com/jokes/56132/';
-    fetch(URL)
+    const RANDOM = 'random';
+    const URL = 'http://api.icndb.com/jokes/';
+    const NERDY = '?limitTo=[nerdy]';
+    const NASTY = '?limitTo=[explicit]';
+    let url;
+    if (id('page-number').value === '') {
+      if (this != undefined && this.id === 'nerdy') {
+        url = URL + RANDOM + NERDY;
+      } else if (this != undefined && this.id === 'nasty') {
+        url = URL + RANDOM + NASTY;
+      } else {
+        url = URL + RANDOM;
+      }
+    } else {
+      url = URL + id('page-number').value;
+    }
+    fetch(url)
       .then(checkResponse)
       .then((response) => response.json())
       .then(processResponse)
@@ -27,8 +44,9 @@
   }
 
   function processResponse(data) {
+    updatePageText();
+    let joke = data.value.joke;
     if (data.type != 'success') {
-      console.log('it got handleError');
       handleError(data);
     } else if (joke != undefined) {
       joke = joke.replace(/&quot;/g, '"');
@@ -39,8 +57,16 @@
   }
 
   function handleError(err) {
-    let message = err.type;
-    id('joke').textContent = message;
+    id('joke').textContent = 'Error: Nothing was written on this page.';
+  }
+
+  function updatePageText() {
+    let pageNumber = id('page-number').value;
+    if (pageNumber === '') {
+      id('page-text').textContent = 'a random page';
+    } else {
+      id('page-text').textContent = 'page ' + pageNumber;
+    }
   }
 
   /**
