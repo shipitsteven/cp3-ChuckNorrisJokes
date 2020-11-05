@@ -8,24 +8,34 @@
   You can retrieve a random joke, or a specific joke with ID.
   There are also options to retrieve jokes from two categories, nerdy or nasty
   Note: the input field must be cleared before another random joke can be retrieved
- -->
+-->
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="styles.css">
-  <script src="index.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Molengo&family=Rye&display=swap" rel="stylesheet">
-  <title>Chuck Norris Doesn't Give a Fig</title>
-</head>
-<body>
-<h1>Once upon a time, someone found a book about Chuck Norris</h1>
-<p>They opened up to <span id="page-text">a random page</span>, and it read:</p>
-<p id="joke"></p>
-<button id="random-btn" type="button">Flip to a random page</button>
-<button id='nerdy' type='button'>I feel Nerdy</button>
-<button id='nasty' type='button'>Make it Nasty</button>
-<input type="number" id="page-number" name="page-number" min="1"
-  placeholder="Flip to Page number...">
-<input type="submit" id="submit" value="Submit">
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="index.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Molengo&family=Rye&display=swap"
+      rel="stylesheet"
+    />
+    <title>Chuck Norris Doesn't Give a Fig</title>
+  </head>
+  <body>
+    <h1>Once upon a time, someone found a book about Chuck Norris</h1>
+    <p>
+      They opened up to <span id="page-text">a random page</span>, and it read:
+    </p>
+    <p id="joke"></p>
+    <button id="random-btn" type="button">Flip to a random page</button>
+    <button id="nerdy" type="button">I feel Nerdy</button>
+    <button id="nasty" type="button">Make it Nasty</button>
+    <input
+      type="number"
+      id="page-number"
+      name="page-number"
+      min="1"
+      placeholder="Flip to Page number..."
+    />
+    <input type="submit" id="submit" value="Submit" />
+  </body>
 </html>

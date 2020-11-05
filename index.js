@@ -65,7 +65,7 @@
 
   /**
    * Process the JSON to display data on HTML
-   * @param {JSON} data
+   * @param {JSON} data the JSON containing the joke, type and id
    */
   function processResponse(data) {
     updatePageText();
