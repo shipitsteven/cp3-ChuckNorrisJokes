@@ -1,3 +1,12 @@
+/*
+ * Name: Steven Wang
+ * Date: November 4, 2020
+ * Section: CSE 154 AF
+ *
+ * This is the styling for my Chuck Norris joke retriever, it's very simple.
+ * I'm using two different Google Fonts, 'Rye' and 'Molengo'.
+ */
+
 body {
   margin: auto;
   width: 75%;
@@ -12,11 +21,15 @@ h1 {
 
 p {
   font-size: 1.5em;
-  font-family: Arial, Helvetica, sans-serif, cursive;
+  font-family: 'Molengo', sans-serif;
+}
+
+#joke {
+  font-size: 2.2em;
 }
 
 button, input {
   padding: 1em;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial', sans-serif;
   margin: 1em;
 }

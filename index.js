@@ -1,8 +1,21 @@
+/*
+ * Name: Steven Wang
+ * Date: November 4, 2020
+ * Section: CSE 154 AF
+ *
+ * This is the script file that's responsible for the API call and behavior
+ * of my Chuck Norris joke retriever page.
+ * It includes the necessary fetch call, data processing, and error handling chain.
+ */
+
 'use strict';
 
-(function () {
+(function() {
   window.addEventListener('load', init);
 
+  /**
+   * Initial API call to populate page, and adding event listeners to buttons
+   */
   function init() {
     fetchJoke();
     id('random-btn').addEventListener('click', fetchJoke);
@@ -11,6 +24,9 @@
     id('nasty').addEventListener('click', fetchJoke);
   }
 
+  /**
+   * Fetch API the handles response, error chain
+   */
   function fetchJoke() {
     const RANDOM = 'random';
     const URL = 'http://api.icndb.com/jokes/';
@@ -18,9 +34,9 @@
     const NASTY = '?limitTo=[explicit]';
     let url;
     if (id('page-number').value === '') {
-      if (this != undefined && this.id === 'nerdy') {
+      if (this !== undefined && this.id === 'nerdy') {
         url = URL + RANDOM + NERDY;
-      } else if (this != undefined && this.id === 'nasty') {
+      } else if (this !== undefined && this.id === 'nasty') {
         url = URL + RANDOM + NASTY;
       } else {
         url = URL + RANDOM;
@@ -35,6 +51,10 @@
       .catch(handleError);
   }
 
+  /**
+   * Checks whether response from API call is good
+   * @param {Promise} response response from API call
+   */
   async function checkResponse(response) {
     if (!response.ok) {
       throw new Error(await response.text());
@@ -43,12 +63,16 @@
     }
   }
 
+  /**
+   * Process the JSON to display data on HTML
+   * @param {JSON} data
+   */
   function processResponse(data) {
     updatePageText();
     let joke = data.value.joke;
-    if (data.type != 'success') {
+    if (data.type !== 'success') {
       handleError(data);
-    } else if (joke != undefined) {
+    } else if (joke !== undefined) {
       joke = joke.replace(/&quot;/g, '"');
       id('joke').textContent = joke;
     } else {
@@ -56,10 +80,16 @@
     }
   }
 
-  function handleError(err) {
+  /**
+   * Catch error and display to the user
+   */
+  function handleError() {
     id('joke').textContent = 'Error: Nothing was written on this page.';
   }
 
+  /**
+   * Updates the page number on the HTML page
+   */
   function updatePageText() {
     let pageNumber = id('page-number').value;
     if (pageNumber === '') {
@@ -76,14 +106,5 @@
    */
   function id(idName) {
     return document.getElementById(idName);
-  }
-
-  /**
-   * Returns a new element with the given tag name.
-   * @param {string} tagName - HTML tag name for new DOM element.
-   * @returns {object} New DOM object for given HTML tag.
-   */
-  function gen(tagName) {
-    return document.createElement(tagName);
   }
 })();
