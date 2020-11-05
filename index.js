@@ -6,6 +6,41 @@
   function init() {
     // TODO: Add listeners
     console.log('js loaded');
+    fetchJoke();
+  }
+
+  function fetchJoke() {
+    const URL = 'http://api.icndb.com/jokes/56132/';
+    fetch(URL)
+      .then(checkResponse)
+      .then((response) => response.json())
+      .then(processResponse)
+      .catch(handleError);
+  }
+
+  async function checkResponse(response) {
+    if (!response.ok) {
+      throw new Error(await response.text());
+    } else {
+      return response;
+    }
+  }
+
+  function processResponse(data) {
+    if (data.type != 'success') {
+      console.log('it got handleError');
+      handleError(data);
+    } else if (joke != undefined) {
+      joke = joke.replace(/&quot;/g, '"');
+      id('joke').textContent = joke;
+    } else {
+      handleError(data);
+    }
+  }
+
+  function handleError(err) {
+    let message = err.type;
+    id('joke').textContent = message;
   }
 
   /**
